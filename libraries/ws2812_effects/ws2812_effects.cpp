@@ -10,7 +10,7 @@ void WS2812Effecter::Show(){
 	{
 	case off: one_color_all(); break;
 	case white: one_color_all(); break;
-	case rainbow_fade: 
+	case rainbow_fade: rainbow_fade_ef(); break;
 	
 	default:
 		SetEffect(off);
@@ -24,8 +24,9 @@ void WS2812Effecter::SetEffect(effect_t new_effect){
 	{
 	case off: SetColorHSV(0, 0, 0); break;
 	case white: SetColorHSV(0, 0, 255); break;
-	case rainbow_fade: delay_t = 128; break;
-	case rainbow_loop: delay_t = 32; step = 32; break;
+	case rainbow_fade: delay_time = 128; break;
+	case rainbow_loop: delay_time = 32; step = 32; break;
+	case new_rainbow_loop: delay_time = 50; break;
 	}
 }
 
@@ -56,22 +57,28 @@ void WS2812Effecter::rainbow_fade_ef(){
 		leds[i] = CHSV(hue, sat, 255);
 	}
 	LEDS.show();
-	if (safeDelay(delay_t)) return;
+	if (safeDelay(delay_time)) return;
 }
 
 void WS2812Effecter::rainbow_loop_ef(){
-	/*idex++;
+	index++;
 	hue = hue + step;
-	if (idex >= led_num) {
-		idex = 0;
+	if (index >= led_num) {
+		index = 0;
 	}
 	if (hue > 255) {
 		hue = 0;
 	}
-	leds[idex] = CHSV(hue, sat, 255);
+	leds[index] = CHSV(hue, sat, 255);
 	LEDS.show();
-	if (safeDelay(delay_t)) return;
-	*/
+	if (safeDelay(delay_time)) return;
+}
+
+void WS2812Effecter::new_rainbow_loop_ef(){
+	hue--;
+	fill_rainbow(leds, led_num, hue);
+	LEDS.show();
+	if (safeDelay(delay_time)) return;
 }
 
 bool safeDelay(int del_time) {
