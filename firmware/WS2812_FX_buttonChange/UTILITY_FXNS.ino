@@ -3,7 +3,8 @@
 void set_color_led(int adex, int cred, int cgrn, int cblu) {
   leds[adex].setRGB( cred, cgrn, cblu);
 }
-
+  def  
+  
 //---FIND INDEX OF HORIZONAL OPPOSITE LED
 int horizontal_index(int i) {
   //-ONLY WORKS WITH INDEX < TOPINDEX
