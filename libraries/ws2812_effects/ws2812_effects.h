@@ -3,32 +3,32 @@
 
 class WS2812Effecter{
 public:
-    enum effect_t{
-        off, white, rainbow_fade, rainbow_loop
-    };
+	enum effect_t{
+		off, white, rainbow_fade, rainbow_loop
+	};
 
-    WS2812Effecter(CHSV* leds, byte led_num, effect_t effect = off, byte brightness = 0);
-    void Show();
-    void SetEffect(effect_t new_effect);
-    void SetColorHSV(byte h, byte s, byte v);
-    void SetColorRGB(byte r, byte g, byte b);
+	WS2812Effecter(CHSV* leds, byte led_num, effect_t effect = off, byte brightness = 0);
+	void Show();
+	void SetEffect(effect_t new_effect);
+	void SetColorHSV(byte h, byte s, byte v);
+	void SetColorRGB(byte r, byte g, byte b);
 
 private:
-    CHSV* leds = nullptr;
-    byte led_num = 0;
-    byte brightness = 0;
+	CHSV* leds = nullptr;
+	byte led_num = 0;
+	byte brightness = 0;
 
-    effect_t effect = off;
+	effect_t effect = off;
 
-    byte hue = 0;
-    byte sat = 0;
+	byte hue = 0;
+	byte sat = 0;
 	byte val = 0;
-    byte step = 0;
-    byte delay_t = 0;
+	byte step = 0;
+	byte delay_t = 0;
 
-    void one_color_all();
-    void rainbow_fade();
-    void rainbow_loop();
+	void one_color_all();
+	void rainbow_fade_ef();
+	void rainbow_loop_ef();
 
-    bool safeDelay(int del_time);
+	bool safeDelay(int del_time);
 };
