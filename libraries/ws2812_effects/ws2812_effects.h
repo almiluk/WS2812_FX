@@ -6,7 +6,8 @@
 class WS2812Effecter{
 public:
 	enum effect_t{
-		off, white, rainbow_fade, rainbow_loop, new_rainbow_loop
+		off, white, rainbow_fade, rainbow_loop, new_rainbow_loop, random_burst,
+		rainbow_vertical, continuous_vertical_rainbow
 	};
 
 	WS2812Effecter(CRGB* leds, byte led_num, effect_t effect = off, byte brightness = 0);
@@ -33,7 +34,11 @@ private:
 	void rainbow_fade_ef();
 	void rainbow_loop_ef();
 	void new_rainbow_loop_ef();
+	void random_burst_ef();
+	void rainbow_vertical_ef();
+	void continuous_vertical_rainbow_ef(); 
 
+	byte horizontal_index(byte i);
 	bool safeDelay(int del_time);
 };
 

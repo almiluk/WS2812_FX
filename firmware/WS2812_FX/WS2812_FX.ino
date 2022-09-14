@@ -10,6 +10,7 @@ WS2812Effecter ws2812_ef(leds, LED_COUNT);
 
 void setup() {
 	Serial.begin(9600);
+	randomSeed(analogRead(0));
 
 	LEDS.addLeds<WS2811, LED_DT, GRB>(leds, LED_COUNT);
 	LEDS.setBrightness(MAX_BRIGHTNESS);
