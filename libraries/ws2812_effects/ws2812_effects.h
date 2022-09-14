@@ -1,3 +1,5 @@
+#ifndef WS2812_EFFECTS_H
+#define WS2812_EFFECTS_H
 #include "FastLED.h"
  
 
@@ -7,14 +9,14 @@ public:
 		off, white, rainbow_fade, rainbow_loop, new_rainbow_loop
 	};
 
-	WS2812Effecter(CHSV* leds, byte led_num, effect_t effect = off, byte brightness = 0);
+	WS2812Effecter(CRGB* leds, byte led_num, effect_t effect = off, byte brightness = 0);
 	void Show();
 	void SetEffect(effect_t new_effect);
 	void SetColorHSV(byte h, byte s, byte v);
 	void SetColorRGB(byte r, byte g, byte b);
 
 private:
-	CHSV* leds = nullptr;
+	CRGB* leds = nullptr;
 	byte led_num = 0;
 	byte brightness = 0;
 
@@ -34,3 +36,5 @@ private:
 
 	bool safeDelay(int del_time);
 };
+
+#endif
